@@ -1,11 +1,12 @@
 const pianoKeys = document.querySelectorAll(".piano-keys .key");
 const volumeSlider = document.querySelector(".volume-slider input");
 const keysCheck = document.querySelector(".keys-check input");
-let audio = new Audio("src/sounds/a.wav");
 
 let saveValidKeys = [];
 
 const playSound = (key) => {
+  let audio = new Audio("src/sounds/a.wav");
+  audio.id = key;
   audio.src = `src/sounds/${key}.wav`;
   audio.play();
 
@@ -16,9 +17,10 @@ const playSound = (key) => {
   }, 200);
 };
 
-const handleVolume = ({ target }) => {
-  audio.volume = target.value;
-};
+// const handleVolume = ({ target }) => {
+//   const keyAudio = document.querySelector("#a");
+//   keyAudio.volume = target.value;
+// };
 
 const showHideKeys = () => {
   pianoKeys.forEach((key) => {
@@ -31,7 +33,7 @@ pianoKeys.forEach((key) => {
   saveValidKeys.push(key.dataset.key);
 });
 
-volumeSlider.addEventListener("input", handleVolume);
+// volumeSlider.addEventListener("input", handleVolume);
 
 keysCheck.addEventListener("click", showHideKeys);
 
